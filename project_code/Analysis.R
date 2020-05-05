@@ -1,5 +1,5 @@
 #danjwalton 2019
-required.packages <- c("data.table", "RJSONIO", "WDI", "openxlsx")
+required.packages <- c("data.table", "RJSONIO", "WDI", "openxlsx","ggplot2")
 lapply(required.packages, require, character.only = T)
 
 if(Sys.info()[["user"]]=="dan-w" | Sys.info()[["user"]]=="danw"){
@@ -34,6 +34,8 @@ load_crs <- function(dataname="crs", path="project_data"){
   crs <- rbindlist(crs)
   return(crs)
 }
+
+
 
 #source("https://raw.githubusercontent.com/danjwalton/crs_keyword_searching/master/project_code/load_and_join.R")
 crs <- load_crs(path="output")
@@ -94,10 +96,14 @@ sectors.id.years[grepl("^I[.]6[.]", SectorID)]$SectorTopLevel <- "Other Social I
 ffwrite(sectors.id.years)
 
 #DONORS ID
-donors.id.years <- dcast(crs, Year + DonorName ~ intellectual, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
-donors.id.years[, (paste0(names(donors.id.years)[!(names(donors.id.years) %in% c("Year", "DonorName"))], ".share")) := .SD/sum(.SD), .SDcols = (names(donors.id.years)[!(names(donors.id.years) %in% c("Year", "DonorName"))]), by=Year]
+donors.id.years <- dcast(crs, Year + DonorName ~ relevance, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+donors.id.years[, (paste0(names(donors.id.years)[!(names(donors.id.years) %in% c("Year", "DonorName"))], ".share")) := .SD/sum(.SD), .SDcols = (names(donors.id.years)[!(names(donors.id.years) %in% c("Year", "DonorName"))]), by=.(Year,DonorName)]
 ffwrite(donors.id.years)
-
+top.donors <- subset(donors.id.years,Year==2018)[order(-subset(donors.id.years,Year==2018)$Major)][c(1:5),DonorName]
+top.donors.graphing.data <- subset(donors.id.years,DonorName %in% top.donors)[,c("Year","DonorName","Minor.share")]
+donor.chart <- ggplot(top.donors.graphing.data,aes(Year,Minor.share,group=DonorName,color=DonorName)) +
+  geom_line(show.legend=T,size=2)
+  
 #RECIPIENTS ID
 recipients.id.years <- dcast(crs, Year + RecipientName ~ intellectual, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
 recipients.id.years <- merge(recipients.id.years, pop[,c("country", "SP.POP.TOTL", "year")], by.x=c("Year", "RecipientName"), by.y=c("year", "country"))
