@@ -121,9 +121,12 @@ subpurpose.id.years <- dcast(crs[relevance != "None" | intellectual == "intellec
 ffwrite(subpurpose.id.years)
 
 #ID GENDER
-gender.id.years <- dcast(crs[intellectual == "intellectual"], Year ~ Gender, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+gender.id.years <- dcast(crs[relevance %in% c("Minor","Major")], Year ~ Gender, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
 gender.id.years[, (paste0(names(gender.id.years)[names(gender.id.years) != "Year"], ".share")) := .SD/sum(.SD), .SDcols = (names(gender.id.years)[names(gender.id.years) != "Year"]), by=Year]
+gender.id.years <- melt(gender.id.years,id.vars=c("Year"))
 ffwrite(gender.id.years)
+gender.chart <- ggplot(subset(gender.id.years,variable %in% c("Year","Principal gender component.share","Significant gender component.share")),aes(Year,value,group=variable,color=variable)) +
+  geom_line(show.legend=T,size=2)
 
 #CHANNELS ID
 firstCap <- function(y) {
