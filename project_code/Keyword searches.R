@@ -6,7 +6,33 @@ lapply(required.packages, require, character.only = T)
 wd <- "G:/My Drive/Work/GitHub/disability_aid_analysis/"
 setwd(wd)
 
-source("https://raw.githubusercontent.com/danjwalton/crs_keyword_searching/master/project_code/load_and_join.R")
+load_crs <- function(dataname="crs", path="project_data"){
+  require("data.table")
+  files.bz <- list.files(path, pattern=paste0(dataname, "_part.+[.]bz"))
+  files.csv <- list.files(path, pattern=paste0(dataname, "_part.+[.]csv"))
+  if(length(files.bz) > 0 & length(files.csv) > 0){
+    files <- files.csv
+    read.crs <- function(x){return(fread(x, encoding = 'UTF-8'))}
+  } else {
+    if(length(files.bz) > 0){
+      files <- files.bz
+      read.crs <- function(x){return(read.csv(x))}
+    } else {
+      files <- files.csv
+      read.crs <- function(x){return(fread(x))}
+    }
+  }
+  crs <- list()
+  for(i in 1:length(files)){
+    print(paste0("Loading part ", i, " of ", length(files)))
+    filepath <- paste0(path, "/", files[i])
+    crs[[i]] <- read.crs(filepath)
+  }
+  crs <- rbindlist(crs)
+  return(crs)
+}
+
+#source("https://raw.githubusercontent.com/danjwalton/crs_keyword_searching/master/project_code/load_and_join.R")
 crs <- load_crs()
 
 keep <- c(
@@ -130,6 +156,16 @@ major.keywords <- c(
   "crpd"
   ,
   "psycho.{0,1}social"
+  ,
+  "fetal alcohol syndrome"
+  ,
+  "developmental delay"
+  ,
+  "pmld"
+  ,
+  "neuro.{0,1}development"
+  ,
+  "neuro.{0,1}diverse"
 )
 
 
@@ -227,7 +263,22 @@ inclusion.keywords <- c(
   "autonomy", "autonomie", "autonomía"
   ,
   #"community", "communaté"
+  #,
   "integration", "intégration", "integración"
+  ,
+  "autogestores"
+)
+
+advocacy.keywords <- c(
+  "empower", "habiliter", "autorizar"
+  ,
+  "rights", "droits", "derechos"
+  ,
+  "self.advoca", "autogestores"
+  ,
+  "self.representative", "auto.représentant",	"auto.representante"
+  ,
+  "autonomy", "autonomie", "autonomía"
 )
 
 employment.keywords <- c(
@@ -288,6 +339,16 @@ intellectual.keywords <- c(
   "cerebral",	"cérébrale"
   ,
   "psycho.{0,1}social"
+  ,
+  "fetal alcohol syndrome"
+  ,
+  "developmental delay"
+  ,
+  "pmld"
+  ,
+  "neuro.{0,1}development"
+  ,
+  "neuro.{0,1}diverse"
 )
 
 education.keywords <- c(
@@ -357,6 +418,9 @@ crs[relevance != "None"][grepl(paste(education.keywords, collapse = "|"), tolowe
 
 crs$family <- "Not family"
 crs[relevance != "None"][grepl(paste(family.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$family <- "family"
+
+crs$advocacy <- "Not advocacy"
+crs[relevance != "None"][grepl(paste(advocacy.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$advocacy <- "advocacy"
 
 source("https://raw.githubusercontent.com/danjwalton/crs_keyword_searching/master/project_code/split_and_save.R")
 split_and_save(crs, "output", 0)
