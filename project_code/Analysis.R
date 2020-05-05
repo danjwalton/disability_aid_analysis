@@ -1,8 +1,12 @@
 #danjwalton 2019
-required.packages <- c("data.table", "RJSONIO", "WDI", "readxl")
+required.packages <- c("data.table", "RJSONIO", "WDI", "openxlsx")
 lapply(required.packages, require, character.only = T)
 
-wd <- "G:/My Drive/Work/GitHub/disability_aid_analysis/"
+if(Sys.info()[["user"]]=="dan-w" | Sys.info()[["user"]]=="danw"){
+  wd <- "G:/My Drive/Work/GitHub/disability_aid_analysis/"
+}else if(Sys.info()[["user"]] %in% c("dean-b") | Sys.info()[["user"]] %in% c("deanb")){
+  wd <- "C:/git/disability_aid_analysis/"
+}
 setwd(wd)
 
 load_crs <- function(dataname="crs", path="project_data"){
@@ -50,8 +54,8 @@ pop[country=="Vietnam"]$country <- "Viet Nam"
 pop[country=="West Bank and Gaza"]$country <- "West Bank and Gaza Strip"
 pop[country=="Yemen, Rep."]$country <- "Yemen"
 
-channel.codes <- read_excel("project_data/DAC-CRS-CODES.xls", sheet="Channel codes", skip=6)
-top.channel.codes <- channel.codes[!duplicated(channel.codes$`Channel Parent Category`),][,c("Channel ID", "Full Name (English)")]
+channel.codes <- read.xlsx("project_data/DAC-CRS-CODES.xlsx", sheet="Channel codes", startRow=7)
+top.channel.codes <- channel.codes[!duplicated(channel.codes$`Channel.Parent.Category`),][,c("Channel.ID", "Full.Name.(English)")]
 names(top.channel.codes) <- c("Channel ID", "ParentChannelName")
 
 ffwrite <- function(x, path="output/"){
