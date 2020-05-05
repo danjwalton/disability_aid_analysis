@@ -2,7 +2,11 @@
 required.packages <- c("data.table", "RJSONIO", "WDI", "readxl")
 lapply(required.packages, require, character.only = T)
 
-wd <- "G:/My Drive/Work/GitHub/disability_aid_analysis/"
+if(Sys.info()[["user"]]=="dan-w" | Sys.info()[["user"]]=="danw"){
+  wd <- "G:/My Drive/Work/GitHub/disability_aid_analysis/"
+}else if(Sys.info()[["user"]] %in% c("dean-b") | Sys.info()[["user"]] %in% c("deanb")){
+  wd <- "C:/git/disability_aid_analysis/"
+}
 setwd(wd)
 
 source("https://raw.githubusercontent.com/danjwalton/crs_keyword_searching/master/project_code/load_and_join.R")
