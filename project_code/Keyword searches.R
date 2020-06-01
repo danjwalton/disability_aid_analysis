@@ -94,7 +94,7 @@ crs <- crs[
 
 crs <- crs[as.character(Year) >= 2014]
 
-major.keywords <- c(
+principal.keywords <- c(
   "disab", "discapaci", "incapaci", "minusválido", "invalidit", "infirmité", "d-isab"
   #,
   #"disorder"
@@ -123,11 +123,17 @@ major.keywords <- c(
   ,
   "wheelchair", "fauteuil roulant", "silla de ruedas"
   ,
+  "plegia", "paralys"
+  ,
   "hearing aid", "audífono", "dispositif d'écoute pour malentendant"
   ,
   "amputation", "amputee", "amputé", "amputa"
   ,
   "schizophreni", "esquizofrenia", "schizophrénie"
+  ,
+  "bipolar"
+  ,
+  "leprosy"
   ,
   "sign language", "langage des signes", "lenguaje de señas"
   ,
@@ -170,13 +176,19 @@ major.keywords <- c(
   "neuro.{0,1}development"
   ,
   "neuro.{0,1}diverse"
+  ,
+  "albinism", "albino"
+  ,
+  "assistive technology", "assistive devices", "tecnología de asistencia", "la technologie d'assistance", "dispositifs d'assistance", "dispositivos de ayuda"
+  ,
+  "reasonable accommodation", "acomodación razonable", "acomodaciones razonables", "aménagements raisonnables", "accommodement raisonnable"
 )
 
 
-minor.keywords <- c(
+significant.keywords <- c(
   "vulnerable group", "vulnerable people", "vulnerable population", "vulnerable individual", "vulnerable girl", "vulnerable women", "vulnerable boy", "vulnerable men", "vulnerable refugee", "who are vulnerable", "which are vulnerable", "vulnerable child"
   ,
-  #"minority group", "minority population", "minorities"
+  #"significantity group", "significantity population", "significantities"
   #,
   "marginali.ed group", "marginali.ed people", "marginali.ed population", "marginali.ed individual", "marginali.ed girl", "marginali.ed women", "marginali.ed boy", "marginali.ed men", "marginali.ed refugee", "who are marginali.ed", "which are marginali.ed", "marginali.ed child", "marginali.ed and young"
   ,
@@ -184,13 +196,16 @@ minor.keywords <- c(
   ,
   #"conflict affected", "conflict-affected", "conflict victim", "victim. of conflict"
   #,
-  "landmine victim", "victime de mine", "víctima de minas terrestres"
+  "landmine victim", "victime de mine", "víctima de minas terrestres", "landmine survivor", "sobreviviente de minas terrestres", "survivant d'une mine",
   #,
   #"wounded"
   #,
   #"injured", "injuries"
   #,
   #"physiotherapy", "fisioterapia"
+  "inclusive education","éducation inclusive", "educación inclusiva"
+  ,
+  "inclusive employment", "empleo inclusivo", "emploi inclusif"
 )
 
 disqualifying.keywords <- c(
@@ -271,6 +286,14 @@ inclusion.keywords <- c(
   "integration", "intégration", "integración"
   ,
   "autogestores"
+  ,
+  "accessiblity", "accessibilité", "accesibilidad"
+  ,
+  "assistive technology", "assistive devices", "tecnología de asistencia", "la technologie d'assistance", "dispositifs d'assistance", "dispositivos de ayuda"
+  ,
+  "reasonable accommodation", "acomodación razonable", "acomodaciones razonables", "aménagements raisonnables", "accommodement raisonnable"
+  ,
+  "rehabilitation", "réhabilitation", "rehabilitación"
 )
 
 advocacy.keywords <- c(
@@ -395,13 +418,13 @@ crs[Disability == "1"]$Disability <- "Significant disability component"
 crs[Disability == "2"]$Disability <- "Principal disability component"
 
 crs$relevance <- "None"
-crs[grepl(paste(minor.keywords, collapse = "|"), tolower(paste(crs$ProjectTitle, crs$ShortDescription, crs$LongDescription)))]$relevance <- "Minor"
-crs[grepl(paste(major.keywords, collapse = "|"), tolower(crs$LongDescription))]$relevance <- "Minor"
-crs[grepl(paste(major.keywords, collapse = "|"), tolower(paste(crs$ShortDescription, crs$ProjectTitle)))]$relevance <- "Major"
-crs[grepl(paste(channel.keywords, collapse = "|"), tolower(crs$ChannelReportedName))]$relevance <- "Major"
+crs[grepl(paste(significant.keywords, collapse = "|"), tolower(paste(crs$ProjectTitle, crs$ShortDescription, crs$LongDescription)))]$relevance <- "Significant"
+crs[grepl(paste(principal.keywords, collapse = "|"), tolower(crs$LongDescription))]$relevance <- "Significant"
+crs[grepl(paste(principal.keywords, collapse = "|"), tolower(paste(crs$ShortDescription, crs$ProjectTitle)))]$relevance <- "Principal"
+crs[grepl(paste(channel.keywords, collapse = "|"), tolower(crs$ChannelReportedName))]$relevance <- "Principal"
 
 crs$check <- "No"
-crs[relevance == "Minor"]$check <- "potential false positive"
+crs[relevance == "Significant"]$check <- "potential false positive"
 crs[relevance != "None"][PurposeName %in% disqualifying.sectors]$check <- "potential false negative"
 crs[relevance != "None"][grepl(paste(disqualifying.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$check <- "potential false negative"
 
