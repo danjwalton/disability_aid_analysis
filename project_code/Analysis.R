@@ -119,11 +119,17 @@ ffwrite(comparison)
 overlap <- dcast(crs[Year == 2018, .(dac=ifelse(Disability %in% c("Principal disability component", "Significant disability component"), "DAC-marked", "Not DAC-marked"), di=ifelse(relevance != "None", "DI-marked", "Not DI-marked"), USD_Disbursement_Defl=USD_Disbursement_Defl)], di ~ dac, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
 ffwrite(overlap)
 
+overlap.inclusion <- dcast(crs[Year == 2018 & inclusion == "inclusion", .(dac=ifelse(Disability %in% c("Principal disability component", "Significant disability component"), "DAC-marked", "Not DAC-marked"), di=ifelse(relevance != "None", "DI-marked", "Not DI-marked"), USD_Disbursement_Defl=USD_Disbursement_Defl)], di ~ dac, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+ffwrite(overlap.inclusion)
+
 #Inclusion
+inclusion.years <- dcast(crs[relevance != "None"], Year ~ inclusion, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+ffwrite(inclusion.years)
+
 marker.inclusion <- setnames(dcast(crs[Year==2018 & Disability %in% c("Principal disability component", "Significant disability component")], inclusion ~ ., value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T)), c("inclusion", "marker"))
 di.inclusion <- setnames(dcast(crs[Year == 2018 & relevance != "None"], inclusion ~., value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T)), c("inclusion", "DI"))
-inclusion <- cbind(marker.inclusion, di.inclusion[,2])
-ffwrite(inclusion)
+inclusion.compare <- cbind(marker.inclusion, di.inclusion[,2])
+ffwrite(inclusion.compare)
 
 #SECTORS
 sectors.years <- dcast(crs, SectorName + relevance ~ Year, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
@@ -138,11 +144,30 @@ sectors.years[grepl("^I[.]5[.]", SectorID)]$SectorTopLevel <- "Government & Civi
 sectors.years[grepl("^I[.]6[.]", SectorID)]$SectorTopLevel <- "Other Social Infrastructure & Services"
 ffwrite(sectors.years)
 
+#SECTORS INCLUSION
+sectors.inclusion <- dcast(crs[inclusion == "inclusion"], SectorName + relevance ~ Year, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+sectors.inclusion[, c("SectorID", "SectorName") := tstrsplit(sectors.inclusion$SectorName, "[.] ")]
+sectors.inclusion[is.na(SectorName)]$SectorName <- sectors.inclusion[is.na(SectorName)]$SectorID
+sectors.inclusion$SectorTopLevel <- sectors.inclusion$SectorName
+sectors.inclusion[grepl("^I[.]1[.]", SectorID)]$SectorTopLevel <- "Education"
+sectors.inclusion[grepl("^I[.]2[.]", SectorID)]$SectorTopLevel <- "Health"
+sectors.inclusion[grepl("^I[.]3[.]", SectorID)]$SectorTopLevel <- "Population Policies/Programmes & Reproductive Health"
+sectors.inclusion[grepl("^I[.]4[.]", SectorID)]$SectorTopLevel <- "Water Supply & Sanitation"
+sectors.inclusion[grepl("^I[.]5[.]", SectorID)]$SectorTopLevel <- "Government & Civil Society"
+sectors.inclusion[grepl("^I[.]6[.]", SectorID)]$SectorTopLevel <- "Other Social Infrastructure & Services"
+ffwrite(sectors.inclusion)
+
 #DONORS
 donors.years <- dcast(crs, Year + DonorName ~ relevance, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
 donors.years[, (paste0(names(donors.years)[!(names(donors.years) %in% c("Year", "DonorName"))], ".share")) := .SD/sum(.SD), .SDcols = (names(donors.years)[!(names(donors.years) %in% c("Year", "DonorName"))]), by=.(Year,DonorName)]
 donors.years[,min.maj.share := sum(.SD), .SDcols = c("Significant.share","Principal.share"), by=.(Year,DonorName)]
 ffwrite(donors.years)
+
+#DONORS INCLUSION
+donors.inclusion <- dcast(crs[inclusion == "inclusion"], Year + DonorName ~ relevance, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+donors.inclusion[, (paste0(names(donors.inclusion)[!(names(donors.inclusion) %in% c("Year", "DonorName"))], ".share")) := .SD/sum(.SD), .SDcols = (names(donors.inclusion)[!(names(donors.inclusion) %in% c("Year", "DonorName"))]), by=.(Year,DonorName)]
+donors.inclusion[,min.maj.share := sum(.SD), .SDcols = c("Significant.share","Principal.share"), by=.(Year,DonorName)]
+ffwrite(donors.inclusion)
 
 top.donors <- c("United Kingdom","United States","Germany","Sweden")
 donors.years <- subset(donors.years,DonorName %in% top.donors)
@@ -175,6 +200,12 @@ recipients.years <- merge(recipients.years, pop[,c("country", "SP.POP.TOTL", "ye
 recipients.years <- recipients.years[, `:=` (significant.per.cap = Significant/SP.POP.TOTL), by=.(Year, RecipientName)]
 ffwrite(recipients.years)
 
+#RECIPIENTS INCLUSION
+recipients.inclusion <- dcast(crs[inclusion == "inclusion"], Year + RecipientName ~ relevance, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+recipients.inclusion <- merge(recipients.inclusion, pop[,c("country", "SP.POP.TOTL", "year")], by.x=c("Year", "RecipientName"), by.y=c("year", "country"))
+recipients.inclusion <- recipients.inclusion[, `:=` (significant.per.cap = Significant/SP.POP.TOTL), by=.(Year, RecipientName)]
+ffwrite(recipients.inclusion)
+
 top.recipients=c("Tuvalu","Tonga","South Sudan","Vanuatu","Nauru")
 recipients.years <- subset(recipients.years,RecipientName %in% top.recipients)
 
@@ -201,8 +232,6 @@ recip.chart.significant <- ggplot(recipients.years[,c("Year","RecipientName","si
     ,legend.key = element_blank()
   ) + labs(y="Significant disability-relevant ODA receieved per capita (USDm)")
 
-
-
 #SUBPURPOSE
 crs$disability.subpurpose <- "Other"
 crs[(employment == "employment" | education == "education" | family == "family" | advocacy == "advocacy")]$disability.subpurpose <- "Mixed"
@@ -210,8 +239,18 @@ crs[employment == "employment" & education != "education" & family != "family" &
 crs[employment != "employment" & education == "education" & family != "family" & advocacy != "advocacy"]$disability.subpurpose <- "Education"
 crs[employment != "employment" & education != "education" & family == "family" & advocacy != "advocacy"]$disability.subpurpose <- "Family"
 crs[employment != "employment" & education != "education" & family != "family" & advocacy == "advocacy"]$disability.subpurpose <- "Self-advocacy"
-subpurpose.years <- dcast(crs[relevance != "None" | Disability == "Principal disability component"], relevance + disability.subpurpose ~ Year, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+subpurpose.years <- dcast(crs[relevance != "None"], relevance + disability.subpurpose ~ Year, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
 ffwrite(subpurpose.years)
+
+#SUBPURPOSE INCLUSION
+crs$disability.subpurpose <- "Other"
+crs[(employment == "employment" | education == "education" | family == "family" | advocacy == "advocacy")]$disability.subpurpose <- "Mixed"
+crs[employment == "employment" & education != "education" & family != "family" & advocacy != "advocacy"]$disability.subpurpose <- "Employment"
+crs[employment != "employment" & education == "education" & family != "family" & advocacy != "advocacy"]$disability.subpurpose <- "Education"
+crs[employment != "employment" & education != "education" & family == "family" & advocacy != "advocacy"]$disability.subpurpose <- "Family"
+crs[employment != "employment" & education != "education" & family != "family" & advocacy == "advocacy"]$disability.subpurpose <- "Self-advocacy"
+subpurpose.inclusion <- dcast(crs[relevance != "None" & inclusion == "inclusion"], relevance + disability.subpurpose ~ Year, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+ffwrite(subpurpose.inclusion)
 
 subpurpose.years <- melt(subpurpose.years,id.vars=c("relevance","disability.subpurpose"))
 subpurpose.years <- subpurpose.years[,.(min.maj = sum(value)), by=.(variable,disability.subpurpose)]
@@ -237,12 +276,18 @@ subpurpose.chart <- ggplot(subpurpose.years,aes(variable,min.maj,group=disabilit
     ,axis.text.x = element_text(size=20,margin=margin(t=20,r=0,b=0,l=0),family="Averta Regular")
     ,legend.background = element_rect(fill = "transparent", colour = "transparent")
     ,legend.key = element_blank()
-  ) + labs(y="Disability-relevant ODA (USD millions)")
+  ) + labs(y="Disability-inclusive ODA (USD millions)")
 
 #GENDER
 gender.years <- dcast(crs[relevance %in% c("Significant","Principal")], Year ~ Gender, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
 gender.years[, (paste0(names(gender.years)[names(gender.years) != "Year"], ".share")) := .SD/sum(.SD), .SDcols = (names(gender.years)[names(gender.years) != "Year"]), by=Year]
 ffwrite(gender.years)
+
+#GENDER INCLUSION
+gender.inclusion <- dcast(crs[relevance %in% c("Significant","Principal") & inclusion == "inclusion"], Year ~ Gender, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+gender.inclusion[, (paste0(names(gender.inclusion)[names(gender.inclusion) != "Year"], ".share")) := .SD/sum(.SD), .SDcols = (names(gender.inclusion)[names(gender.inclusion) != "Year"]), by=Year]
+ffwrite(gender.inclusion)
+
 gender.years <- melt(gender.years,id.vars=c("Year"))
 gender.years$variable <- factor(gender.years$variable, levels = c("Not screened.share","No gender component.share","Significant gender component.share","Principal gender component.share","Not screened","No gender component","Significant gender component","Principal gender component"))
 gender.chart <- ggplot(subset(gender.years,variable %in% c("Principal gender component.share","Significant gender component.share","No gender component.share","Not screened.share")),aes(Year,value,group=variable,color=NULL,fill=variable)) +

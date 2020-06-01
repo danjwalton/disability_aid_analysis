@@ -294,6 +294,8 @@ inclusion.keywords <- c(
   "reasonable accommodation", "acomodación razonable", "acomodaciones razonables", "aménagements raisonnables", "accommodement raisonnable"
   ,
   "rehabilitation", "réhabilitation", "rehabilitación"
+  ,
+  "crpd"
 )
 
 advocacy.keywords <- c(
