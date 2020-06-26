@@ -34,7 +34,23 @@ load_crs <- function(dataname="crs", path="project_data"){
 #source("https://raw.githubusercontent.com/danjwalton/crs_keyword_searching/master/project_code/load_and_join.R")
 crs <- load_crs(path="output")
 dpos <- read.csv("project_data/dpos.csv", header=F, encoding = 'UTF-8')
-pop <- as.data.table(WDI("all","SP.POP.TOTL", start=2014, end=2018))
+
+i <- 0
+while(i < 10){
+  try({
+    rm(pop)
+    pop <- as.data.table(WDI(indicator = c("SP.POP.TOTL"), extra=T))
+  }, silent=T)
+  if(exists("pop")){
+    if(all(c("SP.POP.TOTL") %in% names(pop))){
+      fwrite(pop, "project_data/pop.csv")
+      break
+    }
+  }
+  i <- i + 1
+  print(paste0("Error. Retrying... ",i,"/10"))
+}
+pop <- fread("project_data/pop.csv")
 
 pop[country=="China"]$country <- "China (People's Republic of)"
 pop[country=="Congo, Rep."]$country <- "Congo"
@@ -59,6 +75,11 @@ ffwrite <- function(x, path="output/"){
   dataname <- deparse(substitute(x))
   fwrite(x, paste0(path, dataname, ".csv"))
 }
+
+intellectual2.keywords <- c("cognitive", "cognitiva", "special needs", "necesidades especiales", "besoins spéciau", "besoins spécifiques", "psycho.{0,1}social")
+
+crs$intellectual2 <- crs$intellectual
+crs[intellectual2 == "Not intellectual"][grepl(paste(intellectual2.keywords, collapse = "|"), tolower(paste(crs[intellectual2 == "Not intellectual"]$ProjectTitle, crs[intellectual2 == "Not intellectual"]$ShortDescription, crs[intellectual2 == "Not intellectual"]$LongDescription)))]$intellectual2 <- "intellectual"
 
 #P/S TOTAL DISABILITY
 split.years <- dcast(crs, Year ~ relevance, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))

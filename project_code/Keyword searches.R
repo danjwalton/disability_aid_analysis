@@ -86,10 +86,10 @@ crs <- crs[
     FlowName == "ODA Loans" 
   |
     FlowName == "ODA Grants"
-  | 
-    FlowName == "Equity Investment"
-  | 
-    FlowName == "Private Development Finance"
+#  | 
+#    FlowName == "Equity Investment"
+#  | 
+#    FlowName == "Private Development Finance"
   ]
 
 crs <- crs[as.character(Year) >= 2014]
@@ -111,7 +111,7 @@ principal.keywords <- c(
   ,
   "blind", "ciego", "aveugle", "eye health"
   ,
-  "special needs", "necesidades especiales", "besoins spéciau"
+  "with special needs", "con necesidades especiales", "besoins spéciau", "besoins spécifiques", "special needs education", "disabilities and special needs"
   ,
   "autistic", "autism", "autist"
   ,
@@ -165,7 +165,9 @@ principal.keywords <- c(
   ,
   "crpd"
   ,
-  "psycho.{0,1}social"
+  "psycho.{0,1}social dis"
+  ,
+  "cognitive dis", "discapacidad cognitiva", "déficience cognitive", "cognitive defici", "cognitive delay", "delayed cognitive"
   ,
   "fetal alcohol syndrome"
   ,
@@ -176,6 +178,8 @@ principal.keywords <- c(
   "neuro.{0,1}development"
   ,
   "neuro.{0,1}diverse"
+  ,
+  "sclerosis", "sclérose"
   ,
   "albinism", "albino"
   ,
@@ -250,12 +254,22 @@ disqualifying.keywords <- c(
   "blindness prevention", "avoidable blindness"
 )
 
+significant.disqualifying.keywords <- c(
+  "HIV"
+  ,
+  "AIDS"
+)
+
 disqualifying.sectors <- c(
   "Public finance management (PFM)"
   ,
   "Domestic revenue mobilisation"
   #,
   #"Mineral/mining policy and administrative management"
+)
+
+intellectual.disqualifying <- c(
+  "deaf"
 )
 
 channel.keywords <- c(
@@ -347,13 +361,13 @@ employment.keywords <- c(
 intellectual.keywords <- c(
   "intellect", "intelect"
   ,
-  "cognitive", "cognitiva"
+  "cognitive dis", "discapacidad cognitiva", "déficience cognitive", "cognitive defici", "cognitive delay", "delayed cognitive"
   ,
   "autistic", "austism", "autist"
   ,
-  "special needs", "necesidades especiales", "besoins spéciau", "besoins spécifiques"
+  "with special needs", "con necesidades especiales", "besoins spéciau", "besoins spécifiques", "special needs education", "disabilities and special needs"
   ,
-  "special education", "educación especial", "éducation spéciale"
+  "special education", "educación especial", "éducation spéciale", "special school"
   ,
   "learning diff", "learning disa", "difficultés d'apprentissage", "dificultades de aprendizaje", "discapacidad de aprendizaje", "trouble d'apprentissage"
   ,
@@ -367,7 +381,7 @@ intellectual.keywords <- c(
   ,
   "cerebral",	"cérébrale"
   ,
-  "psycho.{0,1}social"
+  "psycho.{0,1}social disab"
   ,
   "fetal alcohol syndrome"
   ,
@@ -424,6 +438,8 @@ crs[grepl(paste(significant.keywords, collapse = "|"), tolower(paste(crs$Project
 crs[grepl(paste(principal.keywords, collapse = "|"), tolower(crs$LongDescription))]$relevance <- "Significant"
 crs[grepl(paste(principal.keywords, collapse = "|"), tolower(paste(crs$ShortDescription, crs$ProjectTitle)))]$relevance <- "Principal"
 crs[grepl(paste(channel.keywords, collapse = "|"), tolower(crs$ChannelReportedName))]$relevance <- "Principal"
+crs$principal <- "No"
+crs[relevance != "None"][grepl(paste(principal.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$principal <- "Yes"
 
 crs$check <- "No"
 crs[relevance == "Significant"]$check <- "potential false positive"
@@ -431,6 +447,7 @@ crs[relevance != "None"][PurposeName %in% disqualifying.sectors]$check <- "poten
 crs[relevance != "None"][grepl(paste(disqualifying.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$check <- "potential false negative"
 
 crs[relevance != "None"][grepl(paste(disqualifying.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$relevance <- "None"
+crs[principal == "Yes"][grepl(paste(significant.disqualifying.keywords, collapse = "|"), (paste(crs[principal == "Yes"]$ProjectTitle, crs[principal == "Yes"]$ShortDescription, crs[principal == "Yes"]$LongDescription)))]$relevance <- "None"
 crs[relevance != "None"][PurposeName %in% disqualifying.sectors]$relevance <- "None"
 
 crs$inclusion <- "Not inclusion"

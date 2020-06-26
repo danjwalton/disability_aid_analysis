@@ -42,7 +42,22 @@ load_crs <- function(dataname="crs", path="project_data"){
 #source("https://raw.githubusercontent.com/danjwalton/crs_keyword_searching/master/project_code/load_and_join.R")
 crs <- load_crs(path="output")
 dpos <- read.csv("project_data/dpos.csv", header=F, encoding = 'UTF-8')
-pop <- as.data.table(WDI("all","SP.POP.TOTL", start=2014, end=2018))
+i <- 0
+while(i < 10){
+  try({
+    rm(pop)
+    pop <- as.data.table(WDI(indicator = c("SP.POP.TOTL"), extra=T))
+  }, silent=T)
+  if(exists("pop")){
+    if(all(c("SP.POP.TOTL") %in% names(pop))){
+      fwrite(pop, "project_data/pop.csv")
+      break
+    }
+  }
+  i <- i + 1
+  print(paste0("Error. Retrying... ",i,"/10"))
+}
+pop <- fread("project_data/pop.csv")
 
 pop[country=="China"]$country <- "China (People's Republic of)"
 pop[country=="Congo, Rep."]$country <- "Congo"
@@ -164,10 +179,16 @@ donors.years[,min.maj.share := sum(.SD), .SDcols = c("Significant.share","Princi
 ffwrite(donors.years)
 
 #DONORS INCLUSION
-donors.inclusion <- dcast(crs[inclusion == "inclusion"], Year + DonorName ~ relevance, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+donors.inclusion <- dcast(crs, Year + DonorName ~ relevance + inclusion, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
 donors.inclusion[, (paste0(names(donors.inclusion)[!(names(donors.inclusion) %in% c("Year", "DonorName"))], ".share")) := .SD/sum(.SD), .SDcols = (names(donors.inclusion)[!(names(donors.inclusion) %in% c("Year", "DonorName"))]), by=.(Year,DonorName)]
-donors.inclusion[,min.maj.share := sum(.SD), .SDcols = c("Significant.share","Principal.share"), by=.(Year,DonorName)]
+donors.inclusion[,inclusion.share := sum(.SD), .SDcols = c("Significant_inclusion.share","Principal_inclusion.share"), by=.(Year,DonorName)]
 ffwrite(donors.inclusion)
+
+#DONOR COUNTRIES INCLUSION
+donorcountries.inclusion <- dcast(crs, Year + DonorName ~ relevance + inclusion, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+donorcountries.inclusion[, (paste0(names(donorcountries.inclusion)[!(names(donorcountries.inclusion) %in% c("Year", "DonorName"))], ".share")) := .SD/sum(.SD), .SDcols = (names(donorcountries.inclusion)[!(names(donorcountries.inclusion) %in% c("Year", "DonorName"))]), by=.(Year,DonorName)]
+donorcountries.inclusion[,inclusion.share := sum(.SD), .SDcols = c("Significant_inclusion.share","Principal_inclusion.share"), by=.(Year,DonorName)]
+ffwrite(donorcountries.inclusion)
 
 top.donors <- c("United Kingdom","United States","Germany","Sweden")
 donors.years <- subset(donors.years,DonorName %in% top.donors)
@@ -197,13 +218,15 @@ donor.chart.significant <- ggplot(donors.years[,c("Year","DonorName","Significan
 #RECIPIENTS
 recipients.years <- dcast(crs, Year + RecipientName ~ relevance, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
 recipients.years <- merge(recipients.years, pop[,c("country", "SP.POP.TOTL", "year")], by.x=c("Year", "RecipientName"), by.y=c("year", "country"))
-recipients.years <- recipients.years[, `:=` (significant.per.cap = Significant/SP.POP.TOTL), by=.(Year, RecipientName)]
+recipients.years <- recipients.years[, `:=` (per.cap = (Principal + Significant)/(SP.POP.TOTL/1000000)), by=.(Year, RecipientName)]
 ffwrite(recipients.years)
 
 #RECIPIENTS INCLUSION
-recipients.inclusion <- dcast(crs[inclusion == "inclusion"], Year + RecipientName ~ relevance, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+recipients.inclusion <- dcast(crs, Year + RecipientName ~ relevance + inclusion, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+recipients.inclusion[, (paste0(names(recipients.inclusion)[!(names(recipients.inclusion) %in% c("Year", "RecipientName"))], ".share")) := .SD/sum(.SD), .SDcols = (names(recipients.inclusion)[!(names(recipients.inclusion) %in% c("Year", "RecipientName"))]), by=.(Year, RecipientName)]
+recipients.inclusion[,inclusion.share := sum(.SD), .SDcols = c("Significant_inclusion.share","Principal_inclusion.share"), by=.(Year,RecipientName)]
 recipients.inclusion <- merge(recipients.inclusion, pop[,c("country", "SP.POP.TOTL", "year")], by.x=c("Year", "RecipientName"), by.y=c("year", "country"))
-recipients.inclusion <- recipients.inclusion[, `:=` (significant.per.cap = Significant/SP.POP.TOTL), by=.(Year, RecipientName)]
+recipients.inclusion <- recipients.inclusion[, `:=` (per.cap = (Principal_inclusion + Significant_inclusion)/(SP.POP.TOTL/1000000)), by=.(Year, RecipientName)]
 ffwrite(recipients.inclusion)
 
 top.recipients=c("Tuvalu","Tonga","South Sudan","Vanuatu","Nauru")
@@ -251,6 +274,10 @@ crs[employment != "employment" & education != "education" & family == "family" &
 crs[employment != "employment" & education != "education" & family != "family" & advocacy == "advocacy"]$disability.subpurpose <- "Self-advocacy"
 subpurpose.inclusion <- dcast(crs[relevance != "None" & inclusion == "inclusion"], relevance + disability.subpurpose ~ Year, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
 ffwrite(subpurpose.inclusion)
+
+crs$disability.concsub <- gsub("^, |, $", "", gsub("(, )+",", ",paste(gsub("Not.*", "", crs$employment), gsub("Not.*", "", crs$education), gsub("Not.*", "", crs$family), gsub("Not.*", "", crs$advocacy), sep=", ")))
+concsub.inclusion <- dcast(crs[relevance != "None" & inclusion == "inclusion"], disability.concsub ~ Year, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+ffwrite(concsub.inclusion)
 
 subpurpose.years <- melt(subpurpose.years,id.vars=c("relevance","disability.subpurpose"))
 subpurpose.years <- subpurpose.years[,.(min.maj = sum(value)), by=.(variable,disability.subpurpose)]
@@ -332,6 +359,9 @@ crs[channel %in% dpos$V1]$dpo <- "DPO"
 crs$ParentChannelCode <- floor(crs$ParentChannelCode/1000)*1000
 crs$TopChannelCode <- floor(crs$ParentChannelCode/10000)*10000
 crs <- merge(crs, top.channel.codes, by.x="ParentChannelCode", by.y="Channel ID")
+
+channels.inclusion <- dcast(crs, ParentChannelName ~ inclusion, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
+ffwrite(channels.inclusion)
 
 dpos.years <- dcast(crs, dpo + ParentChannelName ~ relevance, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
 dpos.years <- melt(dpos.years[,!("None")],id.vars=c("dpo","ParentChannelName"))
