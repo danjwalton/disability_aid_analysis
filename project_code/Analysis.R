@@ -99,24 +99,24 @@ split.chart <- ggplot(subset(split.years,variable %in% c("Significant.share","Pr
   scale_fill_manual(values=DI_colours[c(1,3)],drop = TRUE,labels=c("Significant","Principal"))+
   scale_y_continuous(labels = scales::percent_format(accuracy=0.5))+
   theme(
-  legend.title=element_blank(),
-  panel.grid.major = element_blank(),
-  panel.grid.minor = element_blank(),
-  panel.background = element_blank(),
-  legend.position="top"
-  ,legend.text = element_text(size=15,family="Averta Regular")
-  ,legend.justification=c(0,0)
-  ,legend.direction="vertical"
-  ,axis.title.x=element_blank()
-  ,axis.title.y=element_text(size=15, angle=90, margin=margin(t=0,r=10,b=0,l=0), hjust=1,family="Averta Regular")
-  ,axis.ticks=element_blank()
-  ,axis.line.y = element_line(size = 1.1)
-  ,axis.line.x = element_line(size = 1.1)
-  ,axis.text.y = element_text(size=15)
-  ,axis.text.x = element_text(size=20,margin=margin(t=20,r=0,b=0,l=0),family="Averta Regular")
-  ,legend.background = element_rect(fill = "transparent", colour = "transparent")
-  ,legend.key = element_blank()
-) + labs(y="Percentage of total ODA")
+    legend.title=element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.background = element_blank(),
+    legend.position="top"
+    ,legend.text = element_text(size=15,family="Averta Regular")
+    ,legend.justification=c(0,0)
+    ,legend.direction="vertical"
+    ,axis.title.x=element_blank()
+    ,axis.title.y=element_text(size=15, angle=90, margin=margin(t=0,r=10,b=0,l=0), hjust=1,family="Averta Regular")
+    ,axis.ticks=element_blank()
+    ,axis.line.y = element_line(size = 1.1)
+    ,axis.line.x = element_line(size = 1.1)
+    ,axis.text.y = element_text(size=15)
+    ,axis.text.x = element_text(size=20,margin=margin(t=20,r=0,b=0,l=0),family="Averta Regular")
+    ,legend.background = element_rect(fill = "transparent", colour = "transparent")
+    ,legend.key = element_blank()
+  ) + labs(y="Percentage of total ODA")
 
 
 #P/S SPLIT
@@ -214,7 +214,7 @@ donor.chart.significant <- ggplot(donors.years[,c("Year","DonorName","Significan
     ,legend.background = element_rect(fill = "transparent", colour = "transparent")
     ,legend.key = element_blank()
   ) + labs(y="Significant disability-relevant ODA (USDm)")
-  
+
 #RECIPIENTS
 recipients.years <- dcast(crs, Year + RecipientName ~ relevance, value.var = "USD_Disbursement_Defl", fun.aggregate = function (x) sum(x, na.rm=T))
 recipients.years <- merge(recipients.years, pop[,c("country", "SP.POP.TOTL", "year")], by.x=c("Year", "RecipientName"), by.y=c("year", "country"))
@@ -320,7 +320,7 @@ gender.years$variable <- factor(gender.years$variable, levels = c("Not screened.
 gender.chart <- ggplot(subset(gender.years,variable %in% c("Principal gender component.share","Significant gender component.share","No gender component.share","Not screened.share")),aes(Year,value,group=variable,color=NULL,fill=variable)) +
   geom_bar(position="stack", stat="identity") +
   scale_fill_manual(values=DI_colours[c(1:4)],drop = TRUE,labels=c("Not screened","No gender component","Significant gender component","Principal gender component"))+
-scale_y_continuous(labels = scales::percent_format(accuracy=1))+
+  scale_y_continuous(labels = scales::percent_format(accuracy=1))+
   theme(
     legend.title=element_blank(),
     panel.grid.major = element_blank(),
@@ -425,12 +425,12 @@ dpos.chart <- ggplot(dpos.graphing,aes(x="",total,group=ParentChannelName,color=
 #### Chart printing ####
 
 chart.list = c("split.chart",
-  "all.channels.chart",
-  "dpos.chart",
-  "subpurpose.chart",
-  "donor.chart.minor",
-  "recip.chart.minor",
-  "gender.chart"
+               "all.channels.chart",
+               "dpos.chart",
+               "subpurpose.chart",
+               "donor.chart.minor",
+               "recip.chart.minor",
+               "gender.chart"
 )
 
 res_def = c(1000,500,500,1000,1000,1000,1000)
@@ -440,10 +440,10 @@ setwd("C:/git/disability_aid_analysis/output/charts")
 for(i in 1:length(chart.list)){
   chart.name = chart.list[i]
   chart.width = res_def[i]
-    chart = get(chart.name)
-    if(!is.null(chart)){
-      Cairo(family="Averta Regular",file=paste0(chart.name,".png"),width=chart.width,height=700,units="px",bg="transparent")
-      tryCatch({print(chart)},error=function(e){})
-      dev.off()
-    }
+  chart = get(chart.name)
+  if(!is.null(chart)){
+    Cairo(family="Averta Regular",file=paste0(chart.name,".png"),width=chart.width,height=700,units="px",bg="transparent")
+    tryCatch({print(chart)},error=function(e){})
+    dev.off()
+  }
 }

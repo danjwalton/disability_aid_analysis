@@ -86,10 +86,10 @@ crs <- crs[
     FlowName == "ODA Loans" 
   |
     FlowName == "ODA Grants"
-#  | 
-#    FlowName == "Equity Investment"
-#  | 
-#    FlowName == "Private Development Finance"
+  | 
+   FlowName == "Equity Investment"
+  | 
+    FlowName == "Private Development Finance"
   ]
 
 crs <- crs[as.character(Year) >= 2014]
@@ -153,7 +153,7 @@ principal.keywords <- c(
   #,
   #"dpos ", "dpo ", "dpo's", "dpos[.]", "dpo[.]", "dpo's[.]"
   ,
-  "special education", "educación especial", "éducation spéciale"
+  "special education", "educación especial", "éducation spéciale", "special needs education", "special need education"
   ,
   "learning difficult", "learning disa", "difficultés d'apprentissage", "dificultades de aprendizaje", "discapacidad de aprendizaje", "trouble d'apprentissage", "learning problem"
   ,
@@ -165,7 +165,7 @@ principal.keywords <- c(
   ,
   "crpd"
   ,
-  "psycho.{0,1}social dis"
+  "psycho.{0,1}social disab", "disability and psycho.{0,1}social", "discapacidad psicosocial", "handicap psychosocial", "discapacidad y psicosocial", "handicap et psychosocial"
   ,
   "cognitive dis", "discapacidad cognitiva", "déficience cognitive", "cognitive defici", "cognitive delay", "delayed cognitive"
   ,
@@ -186,6 +186,14 @@ principal.keywords <- c(
   "assistive technology", "assistive devices", "tecnología de asistencia", "la technologie d'assistance", "dispositifs d'assistance", "dispositivos de ayuda"
   ,
   "reasonable accommodation", "acomodación razonable", "acomodaciones razonables", "aménagements raisonnables", "accommodement raisonnable"
+  ,
+  "inclusive education","éducation inclusive","educación inclusive","accessibility","accesibilidad","accessibilité"
+  ,
+  "workplace accommodations", "aménagements en milieu de travail", "alojamiento en el lugar de trabajo"
+  ,
+  "psychosocial di$"
+  ,
+  "people with limited capacit", "personnes avec une capacité.{0,1} limitée", "personas con capacidad.{0,2} limitada"
 )
 
 
@@ -252,6 +260,12 @@ disqualifying.keywords <- c(
   "fairtradeafrica"
   ,
   "blindness prevention", "avoidable blindness"
+  ,
+  "bautista"
+  ,
+  "unyago"
+  ,
+  "neurotoxin"
 )
 
 significant.disqualifying.keywords <- c(
@@ -266,10 +280,6 @@ disqualifying.sectors <- c(
   "Domestic revenue mobilisation"
   #,
   #"Mineral/mining policy and administrative management"
-)
-
-intellectual.disqualifying <- c(
-  "deaf"
 )
 
 channel.keywords <- c(
@@ -310,6 +320,8 @@ inclusion.keywords <- c(
   "rehabilitation", "réhabilitation", "rehabilitación"
   ,
   "crpd"
+  ,
+  "workplace accommodations", "aménagements en milieu de travail", "alojamiento en el lugar de trabajo"
 )
 
 advocacy.keywords <- c(
@@ -356,6 +368,12 @@ employment.keywords <- c(
   "workplace"
   ,
   "social protection", "social security", "sécurité sociale", "protection sociale",	"protección social", "seguridad social"
+  ,
+  "assistive devices", "tecnología de asistencia", "la technologie d'assistance", "dispositifs d'assistance", "dispositivos de ayuda"
+  ,
+  "reasonable accommodation", "acomodación razonable", "acomodaciones razonables", "aménagements raisonnables", "accommodement raisonnable"
+  ,
+  "workplace accommodations", "aménagements en milieu de travail", "alojamiento en el lugar de trabajo"
 )
 
 intellectual.keywords <- c(
@@ -365,13 +383,15 @@ intellectual.keywords <- c(
   ,
   "autistic", "austism", "autist"
   ,
-  "with special needs", "con necesidades especiales", "besoins spéciau", "besoins spécifiques", "special needs education", "disabilities and special needs"
+  "with special needs", "con necesidades especiales", "avec des besoins spéciau", "avec des besoins spécifiques", "special needs education", "disabilities and special needs", "with disabilities or special needs", "con discapacidad o necesidades especiales", "with disabilities and special needs", "con discapacidad y necesidades especiales"
   ,
-  "special education", "educación especial", "éducation spéciale", "special school"
+  "special education", "educación especial", "éducation spéciale", "special school", "special needs education", "special need education"
   ,
   "learning diff", "learning disa", "difficultés d'apprentissage", "dificultades de aprendizaje", "discapacidad de aprendizaje", "trouble d'apprentissage"
   ,
   "developmental disab", "developmental disorder", "development disab", "development disorder", "trouble du développement", "discapacidad de desarrollo", "discapacidades del desarrollo", "trastorno del desarrollo"
+  ,
+  "with developmental delay", "with delayed development", "avec retard de développement", "con retraso en el desarrollo", "avec développement retardé"
   ,
   "trisomy.{0,1}21", "trisomie.{0,1}21", "trisomía.{0,1}21"
   ,
@@ -379,19 +399,43 @@ intellectual.keywords <- c(
   ,
   "complex support", "soutien complexe", "apoyo compleja"
   ,
-  "cerebral",	"cérébrale"
-  ,
-  "psycho.{0,1}social disab"
+  "psycho.{0,1}social disab", "disability and psycho.{0,1}social", "discapacidad psicosocial", "handicap psychosocial", "discapacidad y psicosocial", "handicap et psychosocial"
   ,
   "fetal alcohol syndrome"
-  ,
-  "developmental delay"
   ,
   "pmld"
   ,
   "neuro.{0,1}development"
   ,
   "neuro.{0,1}diverse"
+  ,
+  "mental disab", "maladie mentale", "discapacidad mental"
+  ,
+  "people with limited capacit", "personnes avec une capacité.{0,1} limitée", "personas con capacidad.{0,2} limitada"
+)
+
+intellectual.disqualifying <- c(
+  "^(?!.*intellectual).*deaf", "^(?!.*intelectual).*discapacidad auditiva"
+  ,
+  "^(?!.*intellectual).*blind"
+  ,
+  "^(?!.*intellectual).*visual impairment", "^(?!.*intelectual).*discapacidad visual"
+  ,
+  "intellectual property"
+  ,
+  "intellectual information"
+  ,
+  "intellectuals"
+  ,
+  "intellectual space"
+  ,
+  "intellectual boundaries"
+  ,
+  "micronutrient"
+  ,
+  "intellectual investment"
+  ,
+  "microbiome"
 )
 
 education.keywords <- c(
@@ -447,7 +491,7 @@ crs[relevance != "None"][PurposeName %in% disqualifying.sectors]$check <- "poten
 crs[relevance != "None"][grepl(paste(disqualifying.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$check <- "potential false negative"
 
 crs[relevance != "None"][grepl(paste(disqualifying.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$relevance <- "None"
-crs[principal == "Yes"][grepl(paste(significant.disqualifying.keywords, collapse = "|"), (paste(crs[principal == "Yes"]$ProjectTitle, crs[principal == "Yes"]$ShortDescription, crs[principal == "Yes"]$LongDescription)))]$relevance <- "None"
+crs[principal != "Yes"][grepl(paste(significant.disqualifying.keywords, collapse = "|"), (paste(crs[principal != "Yes"]$ProjectTitle, crs[principal != "Yes"]$ShortDescription, crs[principal != "Yes"]$LongDescription)))]$relevance <- "None"
 crs[relevance != "None"][PurposeName %in% disqualifying.sectors]$relevance <- "None"
 
 crs$inclusion <- "Not inclusion"
@@ -457,7 +501,8 @@ crs$employment <- "Not employment"
 crs[relevance != "None"][grepl(paste(employment.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$employment <- "employment"
 
 crs$intellectual <- "Not intellectual"
-crs[relevance != "None" | Disability %in% c("Principal disability component", "Significant disability component")][grepl(paste(intellectual.keywords, collapse = "|"), tolower(paste(crs[relevance != "None" | Disability %in% c("Principal disability component", "Significant disability component")]$ProjectTitle, crs[relevance != "None" | Disability %in% c("Principal disability component", "Significant disability component")]$ShortDescription, crs[relevance != "None" | Disability %in% c("Principal disability component", "Significant disability component")]$LongDescription)))]$intellectual <- "intellectual"
+crs[relevance != "None"][grepl(paste(intellectual.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$intellectual <- "intellectual"
+crs[intellectual == "intellectual"][grepl(paste(intellectual.disqualifying, collapse = "|"), tolower(paste(crs[intellectual == "intellectual"]$ProjectTitle, crs[intellectual == "intellectual"]$ShortDescription,crs[intellectual == "intellectual"]$LongDescription)), perl=T)]$intellectual <- "Not intellectual"
 
 crs$education <- "Not education"
 crs[relevance != "None"][grepl(paste(education.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$education <- "education"

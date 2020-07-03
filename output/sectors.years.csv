@@ -3,112 +3,112 @@ SectorName,relevance,2014,2015,2016,2017,2018,SectorID,SectorTopLevel
 Administrative Costs of Donors,None,7904.955323574,8573.6784415865,8578.74248864087,9063.03796798461,9141.11741508034,Administrative Costs of Donors,Administrative Costs of Donors
 Administrative Costs of Donors,Principal,0,0,0,45,0,Administrative Costs of Donors,Administrative Costs of Donors
 Administrative Costs of Donors,Significant,0,0,3.60185,0.0232663,1.30367512,Administrative Costs of Donors,Administrative Costs of Donors
-"Education, Level Unspecified",None,2688.02065880471,2418.41595949527,2828.14815042118,2546.40672447211,2932.09767344275,I.1.a,Education
-"Education, Level Unspecified",Principal,4.00127479,6.703735691,5.593876174,5.5368789,7.056889546,I.1.a,Education
-"Education, Level Unspecified",Significant,62.638775782,54.515172699,34.179840204,60.638814811,71.6155111913,I.1.a,Education
-Basic Education,None,3033.13314467455,3314.51976589168,3863.04415035805,3690.82597296965,3708.5560030155,I.1.b,Education
-Basic Education,Principal,7.10711504,6.07359069,9.388727307,10.244889781,10.264997248,I.1.b,Education
-Basic Education,Significant,86.167804139,111.660213964,300.0809986801,205.693547449,263.3958582973,I.1.b,Education
-Secondary Education,None,1585.53229262602,1337.1796639264,1609.4120918333,1568.7319588441,1611.92821433759,I.1.c,Education
-Secondary Education,Principal,3.27501475,3.101321963,2.597471231,2.800889399,2.3010823157,I.1.c,Education
-Secondary Education,Significant,24.385099138,31.53590256,34.8676291556,95.3918282239,90.05314562,I.1.c,Education
-Post-Secondary Education,None,3546.2589649754,3802.96536727776,4037.84208657072,4224.18110501586,4780.81285467219,I.1.d,Education
-Post-Secondary Education,Principal,0.4914803,0.3096141,0.96359892,0.71311798,1.1391035,I.1.d,Education
-Post-Secondary Education,Significant,2.732409244,1.40695562,2.420460589,7.813003022,13.44901945,I.1.d,Education
-"Health, General",None,2534.32360415043,2297.13755765581,2737.33314252436,2970.53448897769,3410.21325929873,I.2.a,Health
-"Health, General",Principal,29.436938788,35.10507156996,38.397727578,39.7999131538,50.1866838593,I.2.a,Health
-"Health, General",Significant,17.81045388,55.343652773,28.31276,34.581309552,35.3727369122,I.2.a,Health
-Basic Health,None,7491.5806916957,8986.2713345381,8995.46177389247,10340.9325786773,8613.60327374735,I.2.b,Health
-Basic Health,Principal,15.142068682,16.393794466,18.825834723,31.890805648,52.229689064,I.2.b,Health
-Basic Health,Significant,213.464161482,206.3573733,243.3639809164,260.368210682,193.2507523311,I.2.b,Health
+"Education, Level Unspecified",None,2686.60190806471,2408.56520849527,2827.13829732118,2538.10430289211,2930.24287829275,I.1.a,Education
+"Education, Level Unspecified",Principal,8.942579575,14.20850244,11.659848614,12.3147287,19.2530789893,I.1.a,Education
+"Education, Level Unspecified",Significant,59.116221737,56.86115695,29.123720864,62.163386591,61.274116898,I.1.a,Education
+Basic Education,None,3032.20359447455,3314.17809252168,3861.72498415805,3682.84964008965,3706.4663615655,I.1.b,Education
+Basic Education,Principal,7.83969963,8.723945184,11.762484217,12.040342271,12.693114008,I.1.b,Education
+Basic Education,Significant,86.364769749,109.35153284,299.0264079701,211.874427839,263.0573829873,I.1.b,Education
+Secondary Education,None,1585.03526352602,1336.8213304264,1608.2518097333,1568.0169634441,1611.62960333759,I.1.c,Education
+Secondary Education,Principal,3.27501475,3.161335433,2.912138231,3.299519729,2.9401026257,I.1.c,Education
+Secondary Education,Significant,24.882128238,31.83422259,35.7132442556,95.6081932939,89.71273631,I.1.c,Education
+Post-Secondary Education,None,3545.5082425644,3800.94987484776,4036.09183278872,4222.96230430586,4780.19456647219,I.1.d,Education
+Post-Secondary Education,Principal,1.1277625,0.3748644,0.96359892,0.72026891,1.1391035,I.1.d,Education
+Post-Secondary Education,Significant,2.846849455,3.35719775,4.170714371,9.024652802,14.06730765,I.1.d,Education
+"Health, General",None,2520.98879317043,2293.37656795581,2726.22810841436,2954.08702287769,3362.15028179873,I.2.a,Health
+"Health, General",Principal,29.756409718,35.35278766996,38.622293878,39.8446224538,50.6551936593,I.2.a,Health
+"Health, General",Significant,30.82579393,58.856926373,39.19322781,50.984066352,82.9672046122,I.2.a,Health
+Basic Health,None,7402.4110219527,8890.8606581181,8896.13259051247,10266.6915723073,8547.08603383735,I.2.b,Health
+Basic Health,Principal,33.657850982,32.045468566,46.377377803,43.876809048,58.543351164,I.2.b,Health
+Basic Health,Significant,284.118048925,286.11637562,315.1416212164,322.623213652,253.4543301411,I.2.b,Health
 Non-communicable diseases (NCDs),None,0,0,0,0,11.493079601,I.2.c,Health
 Non-communicable diseases (NCDs),Principal,0,0,0,0,1.99938063,I.2.c,Health
 Non-communicable diseases (NCDs),Significant,0,0,0,0,1.32207123,I.2.c,Health
-Population Policies/Programmes & Reproductive Health,None,9598.83599976765,9240.85471702635,9522.53454008605,10438.8280982231,9566.65947273923,I.3,Population Policies/Programmes & Reproductive Health
-Population Policies/Programmes & Reproductive Health,Principal,20.68422673,4.85763228,27.84032434,30.11842309,17.64901933,I.3,Population Policies/Programmes & Reproductive Health
-Population Policies/Programmes & Reproductive Health,Significant,237.4741461917,134.080751312,125.292508704,235.94257553,200.63179947135,I.3,Population Policies/Programmes & Reproductive Health
-Water Supply & Sanitation,None,6569.92777242175,6835.00636010663,7242.47217868451,6759.24256571055,7349.85052326883,I.4,Water Supply & Sanitation
-Water Supply & Sanitation,Principal,0.210109,0.01247655,0.03346842,0.11031455,0.099996,I.4,Water Supply & Sanitation
-Water Supply & Sanitation,Significant,33.442652131,25.092753039,19.65229548,35.1770724414,59.09706667,I.4,Water Supply & Sanitation
-Government & Civil Society-general,None,13280.5858120873,12789.5374613244,13054.6887008535,13627.563768037,14869.8846416048,I.5.a,Government & Civil Society
-Government & Civil Society-general,Principal,32.04763150579,38.161509402,34.248274457,41.515683212,45.4736880978,I.5.a,Government & Civil Society
-Government & Civil Society-general,Significant,186.814894641369,200.170076752,223.211314299168,278.51389835108,326.0278109443,I.5.a,Government & Civil Society
-"Conflict, Peace & Security",None,2815.1140358802,3026.48647406731,3390.01585487241,3785.2540407922,4299.05989098402,I.5.b,Government & Civil Society
-"Conflict, Peace & Security",Principal,6.4779929,2.1742126,6.704997,4.1991946,4.75694521,I.5.b,Government & Civil Society
-"Conflict, Peace & Security",Significant,34.70322217,33.87453155615,56.156137007,48.69894431,53.04499077,I.5.b,Government & Civil Society
-Other Social Infrastructure & Services,None,4113.03107554391,4162.23149645458,4613.11019503895,4821.21775763172,4182.03075209671,I.6,Other Social Infrastructure & Services
-Other Social Infrastructure & Services,Principal,48.142100856,48.199210348,40.250034427,31.973721396,37.3771833178,I.6,Other Social Infrastructure & Services
-Other Social Infrastructure & Services,Significant,102.6400555403,120.406293999536,101.9313618874,156.2389259166,170.3723034643,I.6,Other Social Infrastructure & Services
-Transport & Storage,None,11377.0144696575,11253.4219100532,11287.9912550038,12469.3256007481,12705.3875616136,II.1,Transport & Storage
-Transport & Storage,Principal,0.72380737,0.552417,0.090254,0.18988298,0.28207624,II.1,Transport & Storage
-Transport & Storage,Significant,0.267025,0,0.182854,2.968077,0.41327606,II.1,Transport & Storage
-Communications,None,503.25017310572,427.536271248927,540.11955918232,614.63718697071,795.04970322527,II.2,Communications
-Communications,Principal,0.07410347,0.01142205,0.01397331,0.04493685,0.023830416,II.2,Communications
-Communications,Significant,4.21877842,3.140992861,2.2044045,3.47981279,1.6467893603,II.2,Communications
+Population Policies/Programmes & Reproductive Health,None,9543.44600060764,9177.24843338235,9425.70932098605,10342.0376140531,9482.77238378123,I.3,Population Policies/Programmes & Reproductive Health
+Population Policies/Programmes & Reproductive Health,Principal,25.57408673,12.86782898,30.25466434,31.52013309,20.64801033,I.3,Population Policies/Programmes & Reproductive Health
+Population Policies/Programmes & Reproductive Health,Significant,287.9742853517,189.676838256,219.703387804,331.3313497,281.51989742935,I.3,Population Policies/Programmes & Reproductive Health
+Water Supply & Sanitation,None,6560.24340151175,6825.66524696663,7236.53052578451,6744.52616648055,7340.82265883883,I.4,Water Supply & Sanitation
+Water Supply & Sanitation,Principal,0.210109,0.01247655,0.03346842,1.86245455,0.1686662,I.4,Water Supply & Sanitation
+Water Supply & Sanitation,Significant,43.127023041,34.433866179,25.59394838,48.1413316714,68.0562609,I.4,Water Supply & Sanitation
+Government & Civil Society-general,None,13265.9842265773,12765.4547108244,13041.7970972235,13606.064250737,14851.5231784948,I.5.a,Government & Civil Society
+Government & Civil Society-general,Principal,35.06113450179,42.372309602,35.370201657,45.574076012,48.7648599938,I.5.a,Government & Civil Society
+Government & Civil Society-general,Significant,198.402977155369,220.042027052,234.980990729168,295.95502285108,341.0981021583,I.5.a,Government & Civil Society
+"Conflict, Peace & Security",None,2814.0733748802,3026.48647406731,3390.01585487241,3785.2540407922,4299.05989098402,I.5.b,Government & Civil Society
+"Conflict, Peace & Security",Principal,6.4779929,2.2200919,6.704997,4.1991946,4.78593291,I.5.b,Government & Civil Society
+"Conflict, Peace & Security",Significant,35.74388317,33.82865225615,56.156137007,48.69894431,53.01600307,I.5.b,Government & Civil Society
+Other Social Infrastructure & Services,None,4108.19183790391,4158.18608824458,4609.51542599895,4814.16318463172,4171.27204734671,I.6,Other Social Infrastructure & Services
+Other Social Infrastructure & Services,Principal,48.557805776,48.525608998,41.828323767,33.050126396,38.3749249078,I.6,Other Social Infrastructure & Services
+Other Social Infrastructure & Services,Significant,107.0635882603,124.125303559536,103.9478415874,162.2170939166,180.1332666243,I.6,Other Social Infrastructure & Services
+Transport & Storage,None,11373.5410671575,11246.9076253532,11285.2293535768,12457.4888747681,12694.5079276136,II.1,Transport & Storage
+Transport & Storage,Principal,0.72380737,0.5915758,0.348948,6.76269398,5.82787224,II.1,Transport & Storage
+Transport & Storage,Significant,3.7404275,6.4751259,2.686061427,8.23199198,5.74711406,II.1,Transport & Storage
+Communications,None,501.60220519572,426.971927358927,539.68946202042,609.86960177071,752.40933812527,II.2,Communications
+Communications,Principal,0.07410347,0.01142205,0.01397331,0.04493685,0.0238735763,II.2,Communications
+Communications,Significant,5.86674633,3.705336751,2.6345016619,8.24739799,44.2871113,II.2,Communications
 Energy Policy,None,2617.6682211766,2834.52038021393,1587.5973444768,1764.19883510651,2513.94941489156,II.3.a,Energy Policy
 Energy Policy,Principal,0.0601726,0.2626005,0,0,0,II.3.a,Energy Policy
 Energy Policy,Significant,0.26013199,0.66387747,0.07435617,0.00506031,0.990456,II.3.a,Energy Policy
-"Energy generation, renewable sources",None,2502.6742888066,2849.3351547543,3311.6027168956,3680.913344974,3692.6803746527,II.3.b,"Energy generation, renewable sources"
-"Energy generation, renewable sources",Significant,0.3628412375,0.0262347,0,2.635029,7.44208750055,II.3.b,"Energy generation, renewable sources"
+"Energy generation, renewable sources",None,2498.6392088066,2845.4948347543,3309.8816690956,3680.872109274,3692.6803746527,II.3.b,"Energy generation, renewable sources"
+"Energy generation, renewable sources",Significant,4.3979212375,3.8665547,1.7210478,2.6762647,7.44208750055,II.3.b,"Energy generation, renewable sources"
 "Energy generation, non-renewable sources",None,1558.072944846,1201.330151703,1518.6191866238,2081.841223294,1436.85113744,II.3.c,"Energy generation, non-renewable sources"
 Hybrid energy plants,None,0,0,0.0904101,34.00922461,16.924096701,II.3.d,Hybrid energy plants
 Nuclear energy plants,None,106.65358332,82.0874417732,210.9392543102,158.9759054,82.21094432,II.3.e,Nuclear energy plants
-Energy distribution,None,2078.7447886113,2729.0276977733,2998.6483230117,3238.5407176917,3038.9864187931,II.3.f,Energy distribution
-Energy distribution,Significant,0,0,0,0,0,II.3.f,Energy distribution
-Banking & Financial Services,None,4273.43620703128,5132.0733658376,4121.21128426486,3878.18425696137,3999.60185275512,II.4,Banking & Financial Services
-Banking & Financial Services,Principal,0.44634538,0.54595048,0.001397067,0.6762373,0.66015864,II.4,Banking & Financial Services
-Banking & Financial Services,Significant,20.13659796,24.10232716,41.68026357,49.43228225,32.000706035,II.4,Banking & Financial Services
-Business & Other Services,None,1640.70965987464,1918.73788131393,1650.37242139997,1424.9556151077,1971.2217421469,II.5,Business & Other Services
+Energy distribution,None,2078.7447886113,2728.2625187733,2998.6483230117,3238.5407176917,3038.9864187931,II.3.f,Energy distribution
+Energy distribution,Significant,0,0.765179,0,0,0,II.3.f,Energy distribution
+Banking & Financial Services,None,4261.59913923128,5130.6695028376,4117.28231966486,3874.74951536137,3997.96103275512,II.4,Banking & Financial Services
+Banking & Financial Services,Principal,10.54654538,0.54595048,2.062161067,1.6762373,0.66015864,II.4,Banking & Financial Services
+Banking & Financial Services,Significant,21.87346576,25.50619016,43.54846417,51.86702385,33.641526035,II.4,Banking & Financial Services
+Business & Other Services,None,1640.70965987464,1918.58065371393,1650.13512479997,1422.7375353077,1968.9348386469,II.5,Business & Other Services
 Business & Other Services,Principal,0.0555358,0.0695099,0.11688733,0.94875,0.45210314,II.5,Business & Other Services
-Business & Other Services,Significant,5.507894895,11.5142797,13.44537185,26.8700547,16.53715832,II.5,Business & Other Services
-Agriculture,None,6678.95083429986,7076.72774957376,7566.43852932974,7638.14666398706,7053.38211202158,III.1.a,Agriculture
-Agriculture,Principal,0.13520782,0.320281781,1.050012247,0.865177201,0.7180112813,III.1.a,Agriculture
-Agriculture,Significant,63.35316704,53.77494232,72.81498299,64.637421306,69.201251535,III.1.a,Agriculture
-Forestry,None,722.0264245613,714.8335592528,542.4078597708,805.59204106458,679.665140545418,III.1.b,Forestry
+Business & Other Services,Significant,5.507894895,11.6715073,13.68266845,29.0881345,18.82406182,II.5,Business & Other Services
+Agriculture,None,6651.93560339986,7068.19970881376,7561.45170282974,7631.69808078706,7049.51382612358,III.1.a,Agriculture
+Agriculture,Principal,0.96197682,0.579915781,1.590709147,0.956966201,0.9500805813,III.1.a,Agriculture
+Agriculture,Significant,89.54162894,62.04334908,77.26111259,70.994215506,72.837468133,III.1.a,Agriculture
+Forestry,None,722.0264245613,714.8335592528,542.4078597708,805.59204106458,679.231018545418,III.1.b,Forestry
 Forestry,Principal,0,0,0,0,0.00208147,III.1.b,Forestry
-Forestry,Significant,0,0.0480766,4.4106313,4.1479975,2.97910138,III.1.b,Forestry
-Fishing,None,228.2744877665,212.164748363,361.6178107538,591.180357655,364.94883455093,III.1.c,Fishing
+Forestry,Significant,0,0.0480766,4.4106313,4.1479975,3.41322338,III.1.b,Forestry
+Fishing,None,227.9933847665,211.968144963,361.4453777538,591.058810655,364.89743085093,III.1.c,Fishing
 Fishing,Principal,0,0,0,0.0100721,0.00077236,III.1.c,Fishing
-Fishing,Significant,0.02077673,0,0,0,0.29301477,III.1.c,Fishing
-Industry,None,1364.90605795578,1667.3454080866,1322.08040727891,2343.58723299027,2018.89621445785,III.2.a,Industry
-Industry,Principal,0.11698292,0.15165986,0.0563814,0.0505317,0.702571218,III.2.a,Industry
-Industry,Significant,2.31903934,7.99220724,11.10951053,13.28918524,41.31622139,III.2.a,Industry
+Fishing,Significant,0.30187973,0.1966034,0.172433,0.121547,0.34441847,III.1.c,Fishing
+Industry,None,1362.27196935578,1664.9006887266,1319.40313367891,2340.80251989027,2017.34597035785,III.2.a,Industry
+Industry,Principal,0.13289102,0.15165986,0.0563814,0.0505317,0.702571218,III.2.a,Industry
+Industry,Significant,4.93721984,10.4369266,13.78678413,16.07389834,42.86646549,III.2.a,Industry
 Mineral Resources & Mining,None,361.90140871412,449.667576574,379.185091678,478.6619218013,426.3109792753,III.2.b,Mineral Resources & Mining
 Mineral Resources & Mining,Significant,0.6928861,0.6972731,0.430727307,0.5681731,0.03631317,III.2.b,Mineral Resources & Mining
 Construction,None,19.0286582762689,71.353363126,40.31969542,30.6125141,40.413248098213,III.2.c,Construction
-Trade Policies & Regulations,None,1053.22569794012,961.25929976815,1104.7214331221,1205.57888961631,1341.51168545935,III.3.a,Trade Policies & Regulations
+Trade Policies & Regulations,None,1052.97290794012,961.25929976815,1104.7214331221,1205.57888961631,1341.51168545935,III.3.a,Trade Policies & Regulations
 Trade Policies & Regulations,Principal,0,0,0.00893328,0,0,III.3.a,Trade Policies & Regulations
-Trade Policies & Regulations,Significant,1.4285785,0.20020551,0.5053796,2.36010681,0.4909003,III.3.a,Trade Policies & Regulations
-Tourism,None,185.36565291319,154.3052589592,183.8479368391,193.6673681184,135.577473101,III.3.b,Tourism
+Trade Policies & Regulations,Significant,1.6813685,0.20020551,0.5053796,2.36010681,0.4909003,III.3.a,Trade Policies & Regulations
+Tourism,None,185.30067921319,154.2372647592,183.8385185591,193.6146119184,135.539961801,III.3.b,Tourism
 Tourism,Principal,0,0,0,0,0.00208147,III.3.b,Tourism
-Tourism,Significant,0.0130056,0.123893,0.2885805,0.0259046,1.0786358,III.3.b,Tourism
-General Environment Protection,None,4598.06689862409,4740.51088444512,4973.35027766902,4554.5742036186,4026.99175910531,IV.1,General Environment Protection
-General Environment Protection,Principal,0,0,0,0.08844988,0.04838489,IV.1,General Environment Protection
-General Environment Protection,Significant,39.924963828,90.5023575182,60.196272622,41.2459461006,53.11650024,IV.1,General Environment Protection
-Other Multisector,None,9545.97540859737,9719.43945422908,10565.3152044636,9939.18292879454,10127.8643696204,IV.2,Other Multisector
-Other Multisector,Principal,5.450166103,13.18605587,5.7687847699,4.540610436,12.791534039,IV.2,Other Multisector
-Other Multisector,Significant,46.43718946,93.453938879,60.78337693,97.8635016426,214.16423189,IV.2,Other Multisector
-Unallocated / Unspecified,None,2552.93854347029,5399.80554068911,5933.0132150433,6112.5469816394,3919.21061522566,IX,Unallocated / Unspecified
-Unallocated / Unspecified,Principal,6.614873149475,4.739751473,2.992829561,5.40947285,4.586466744,IX,Unallocated / Unspecified
-Unallocated / Unspecified,Significant,5.95418363,4.312975945,4.543554211,33.857171912,42.4688823083,IX,Unallocated / Unspecified
+Tourism,Significant,0.0779793,0.1918872,0.29799878,0.0786608,1.1161471,III.3.b,Tourism
+General Environment Protection,None,4597.90849472409,4737.85045024512,4972.14110556902,4554.0889432686,4020.91566430531,IV.1,General Environment Protection
+General Environment Protection,Principal,0,0,0,0.10074348,0.60126719,IV.1,General Environment Protection
+General Environment Protection,Significant,40.083367728,93.1627917182,61.405444722,41.7189128506,58.63971274,IV.1,General Environment Protection
+Other Multisector,None,9496.06207137637,9714.78983422908,10548.2516528626,9931.48028239454,10116.4203463204,IV.2,Other Multisector
+Other Multisector,Principal,27.774736424,14.01149737,11.6035155099,8.673610436,18.793285199,IV.2,Other Multisector
+Other Multisector,Significant,74.02595636,97.278117379,72.012197791,101.4331480426,219.60650403,IV.2,Other Multisector
+Unallocated / Unspecified,None,2552.72557924329,5399.51306598911,5932.5522152233,6109.2414990094,3917.83946092566,IX,Unallocated / Unspecified
+Unallocated / Unspecified,Principal,6.615526573475,4.739751473,2.992829561,5.54707185,4.677356244,IX,Unallocated / Unspecified
+Unallocated / Unspecified,Significant,6.166494433,4.605450645,5.004554031,37.025055542,43.7491471083,IX,Unallocated / Unspecified
 Refugees in Donor Countries,None,5787.558400264,12606.177388636,16635.384997364,14114.578168525,10220.2598143226,Refugees in Donor Countries,Refugees in Donor Countries
 Refugees in Donor Countries,Principal,0,0,0,0,0.0391485,Refugees in Donor Countries,Refugees in Donor Countries
 Refugees in Donor Countries,Significant,225.678319757,4.0524682,0.262758,7.97169,122.1829,Refugees in Donor Countries,Refugees in Donor Countries
-General Budget Support,None,3318.601785997,5753.8944558586,5388.17290634428,6421.066825715,7307.47797766996,VI.1,General Budget Support
+General Budget Support,None,3317.213815997,5751.3074058586,5386.08230634428,6421.066825715,7307.23189466996,VI.1,General Budget Support
 General Budget Support,Principal,0.21764,0,0.338035,0,0,VI.1,General Budget Support
-General Budget Support,Significant,0,0,0.0058027,0.0135708,0,VI.1,General Budget Support
-Development Food Assistance,None,1084.94702301123,1485.53877830086,1449.8330297988,1467.839002054,1731.95883367945,VI.2,Development Food Assistance
-Development Food Assistance,Principal,0,2.624897,0,0.00129636,0,VI.2,Development Food Assistance
-Development Food Assistance,Significant,34.773366176,40.8578126,99.15077189,72.039527518,166.2885575,VI.2,Development Food Assistance
+General Budget Support,Significant,1.38797,2.58705,2.0964027,0.0135708,0.246083,VI.1,General Budget Support
+Development Food Assistance,None,1084.76353001123,1480.85239330086,1445.4552077988,1466.234332054,1731.07414967945,VI.2,Development Food Assistance
+Development Food Assistance,Principal,0.183493,6.874607,4.377822,1.60596636,0,VI.2,Development Food Assistance
+Development Food Assistance,Significant,34.773366176,41.2944876,99.15077189,72.039527518,167.1732415,VI.2,Development Food Assistance
 Other Commodity Assistance,None,1988.9282467,271.621401,125.94176245,244.26598588,93.373379648,VI.3,Other Commodity Assistance
 Other Commodity Assistance,Principal,0,0,0,0,0.01344683,VI.3,Other Commodity Assistance
 Action Relating to Debt,None,1493.07424782143,1903.379936272,3361.676017352,1366.132878909,822.8509178011,VII,Action Relating to Debt
-Emergency Response,None,13660.6660494974,17218.4971396723,21408.9850547992,24339.2419792191,25982.5226910155,VIII.1,Emergency Response
-Emergency Response,Principal,17.79175026,39.66538839,29.35128439,37.94674753,52.985319317,VIII.1,Emergency Response
-Emergency Response,Significant,470.675373877,551.418336722,847.5405443206,990.240325026,984.011473771,VIII.1,Emergency Response
-Reconstruction Relief & Rehabilitation,None,1023.8338589754,1036.482900113,1092.7859740539,1270.83284293185,1465.3915637446,VIII.2,Reconstruction Relief & Rehabilitation
+Emergency Response,None,13660.2467784974,17217.2036304723,21408.9850547992,24331.5027497191,25981.5373410155,VIII.1,Emergency Response
+Emergency Response,Principal,17.79175026,39.99326812,29.38130039,40.08325153,54.193548017,VIII.1,Emergency Response
+Emergency Response,Significant,471.094644877,552.383966192,847.5105283206,995.843050526,983.788595071,VIII.1,Emergency Response
+Reconstruction Relief & Rehabilitation,None,1023.8338589754,1036.482900113,1092.7859740539,1270.83219249785,1465.3915637446,VIII.2,Reconstruction Relief & Rehabilitation
 Reconstruction Relief & Rehabilitation,Principal,0.71944,0.1705365,0.7046198,0.74267962,1.552237809,VIII.2,Reconstruction Relief & Rehabilitation
-Reconstruction Relief & Rehabilitation,Significant,16.72584811,27.79516067,8.77747038,36.19004735,66.49402429,VIII.2,Reconstruction Relief & Rehabilitation
-Disaster Prevention & Preparedness,None,868.5490332688,1251.09121421081,1317.86565043322,1321.51450299107,1163.19897152444,VIII.3,Disaster Prevention & Preparedness
-Disaster Prevention & Preparedness,Principal,0.6516042,0.6301664,0.0229214,1.87122845,1.2438321,VIII.3,Disaster Prevention & Preparedness
-Disaster Prevention & Preparedness,Significant,15.46322994,16.02414591,37.908207465,43.0629445,36.4850910863,VIII.3,Disaster Prevention & Preparedness
+Reconstruction Relief & Rehabilitation,Significant,16.72584811,27.79516067,8.77747038,36.190697784,66.49402429,VIII.2,Reconstruction Relief & Rehabilitation
+Disaster Prevention & Preparedness,None,868.5490332688,1251.09121421081,1317.86565043322,1320.81765199107,1162.36573352444,VIII.3,Disaster Prevention & Preparedness
+Disaster Prevention & Preparedness,Principal,0.6516042,0.68210962,0.03643198,1.87122845,2.08012048,VIII.3,Disaster Prevention & Preparedness
+Disaster Prevention & Preparedness,Significant,15.46322994,15.97220269,37.894696885,43.7597955,36.4820407063,VIII.3,Disaster Prevention & Preparedness
