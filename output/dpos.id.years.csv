@@ -1,13 +1,13 @@
 dpo,ParentChannelName,Not intellectual,intellectual
 DPO,Developing country-based NGO,0.60407638,0.090677618
-DPO,Donor country-based NGO,171.6564473556,3.901359129
+DPO,Donor country-based NGO,171.7133004556,3.844506029
 DPO,INTERNATIONAL NGO,45.8218887,0
 DPO,Other,0,0.00457825
 DPO,Recipient Government,0,0.0107565
 DPO,"University, college or other teaching institution, research institute or think‑tank",0.00688649,0.0360673
-Other channel,Developing country-based NGO,9640.55690430384,14.425189469
-Other channel,Donor Government,194672.558577427,14.5923029006
-Other channel,Donor country-based NGO,73533.6094869252,51.51422103
+Other channel,Developing country-based NGO,9640.63231160384,14.349782169
+Other channel,Donor Government,194672.878866727,14.2720136006
+Other channel,Donor country-based NGO,73534.7769615252,50.34674643
 Other channel,European Union Institution (EU),9191.5874934406,0
 Other channel,INTERNATIONAL NGO,28968.7026557279,6.36572564
 Other channel,International Monetary Fund (IMF),821.4131357981,0
@@ -26,7 +26,7 @@ Other channel,Public-Private Partnership (PPP),4134.2634681247,0
 Other channel,Recipient Government,264386.432661074,7.31090128
 Other channel,Regional Development Bank,9383.53774066453,0
 Other channel,Third Country Government (Delegated co-operation),6135.2077838256,1.6295
-Other channel,"United Nations agency, fund or commission (UN)",97893.6362907532,19.1046031
-Other channel,"University, college or other teaching institution, research institute or think‑tank",29658.0521970948,19.7163043061
+Other channel,"United Nations agency, fund or commission (UN)",97897.1908007532,15.5500931
+Other channel,"University, college or other teaching institution, research institute or think‑tank",29659.4770435008,18.2914579001
 Other channel,World Bank Group (WB),18721.1443129858,48.41048
 Other channel,World Trade Organisation,178.370481,0

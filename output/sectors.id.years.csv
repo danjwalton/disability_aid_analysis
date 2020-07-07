@@ -1,22 +1,20 @@
 SectorName,relevance,2014,2015,2016,2017,2018,SectorID,SectorTopLevel
-"Education, Level Unspecified",Principal,1.65472842,2.28635737,1.82873498,1.2879525,1.662338306,I.1.a,Education
-"Education, Level Unspecified",Significant,9.95109394,6.22899456,2.820916914,6.03834242,0.2732707,I.1.a,Education
+"Education, Level Unspecified",Principal,1.6526968,2.28635737,1.82873498,1.2879525,1.600585206,I.1.a,Education
+"Education, Level Unspecified",Significant,9.83933294,6.13300136,2.820916914,6.03834242,0.2732707,I.1.a,Education
 Basic Education,Principal,1.3699714,0.54511761,5.56491048,3.887164307,2.054293524,I.1.b,Education
-Basic Education,Significant,5.0456354,0.1636027,3.8797605901,3.9867325,20.6617797,I.1.b,Education
+Basic Education,Significant,5.0456354,0.1636027,3.8797605901,3.9867325,20.6228048,I.1.b,Education
 Secondary Education,Principal,0.41945344,0.21046895,0.112908517,0.21791303,0.18230791,I.1.c,Education
 Secondary Education,Significant,0.2237198,0.3830559,0.0234393,0,5.7934886,I.1.c,Education
 Post-Secondary Education,Principal,0.490469,0.275807,0.53143676,0.25473779,0.326994,I.1.d,Education
-Post-Secondary Education,Significant,0,0.05575071,0.008888216,0.583575692,0.00601901,I.1.d,Education
-"Health, General",Principal,0.8655992,0.8100748,1.94381564,1.18684897,1.15175164,I.2.a,Health
-"Health, General",Significant,0.212665,0.170529853,0.29379,0.6939993,0.079233,I.2.a,Health
-Basic Health,Principal,0.02498894,0.0112292,0.08290209,0.2649078,1.52564006,I.2.b,Health
-Basic Health,Significant,0.104117,0.248196,0.3923095,0.4211004,0.6828062,I.2.b,Health
-Non-communicable diseases (NCDs),Principal,0,0,0,0,0.06537896,I.2.c,Health
-Non-communicable diseases (NCDs),Significant,0,0,0,0,0.0246571,I.2.c,Health
-Population Policies/Programmes & Reproductive Health,Principal,0,0.00782749,0,0,2.13215,I.3,Population Policies/Programmes & Reproductive Health
-Population Policies/Programmes & Reproductive Health,Significant,6.9124533,0.71967987,0.2264845,0.569123,0.2082448,I.3,Population Policies/Programmes & Reproductive Health
+Post-Secondary Education,Significant,0,0.0503418,0,0.5798557,0.00601901,I.1.d,Education
+"Health, General",Principal,0.501475,0.6945508,1.68514024,1.100503,0.72812564,I.2.a,Health
+"Health, General",Significant,0.212665,0.106552,0.047715,0.0692013,0,I.2.a,Health
+Basic Health,Principal,0.02498894,0.0112292,0.08290209,0.2649078,0.10328006,I.2.b,Health
+Basic Health,Significant,0.104117,0.248196,0.3923095,0.4008096,0.4373356,I.2.b,Health
+Population Policies/Programmes & Reproductive Health,Principal,0,0.00782749,0,0,0,I.3,Population Policies/Programmes & Reproductive Health
+Population Policies/Programmes & Reproductive Health,Significant,6.9124533,0.71967987,0.2264845,0.569123,0.195607,I.3,Population Policies/Programmes & Reproductive Health
 Water Supply & Sanitation,Significant,0.39806,0.359116,0,0,0,I.4,Water Supply & Sanitation
-Government & Civil Society-general,Principal,3.974709326,4.16531975,3.43975921,4.130140257,2.090691191,I.5.a,Government & Civil Society
+Government & Civil Society-general,Principal,3.974709326,4.14515865,3.43975921,4.130140257,2.090691191,I.5.a,Government & Civil Society
 Government & Civil Society-general,Significant,3.7300981,2.48959219,3.030825498,1.77101384,3.26314874,I.5.a,Government & Civil Society
 "Conflict, Peace & Security",Significant,1.88472053,0,0,0.0367477,0.0366312,I.5.b,Government & Civil Society
 Other Social Infrastructure & Services,Principal,4.22560834,3.513904564,2.293037663,3.25339727,3.291195401,I.6,Other Social Infrastructure & Services
@@ -24,13 +22,13 @@ Other Social Infrastructure & Services,Significant,8.56018614,0.72506011,1.03912
 Transport & Storage,Principal,0,0,0,0,0.209883,II.1,Transport & Storage
 Banking & Financial Services,Significant,0,0,0,0,0.00605309,II.4,Banking & Financial Services
 Business & Other Services,Significant,0,0.407409,0.363623,0.0259799,0.0195735,II.5,Business & Other Services
-Agriculture,Principal,0.0106592,0.0011622,0,0.12725792,0,III.1.a,Agriculture
-Agriculture,Significant,0,0,0,0.1404,0.1978547,III.1.a,Agriculture
-Industry,Principal,0,0,0.00644457,0,0.0568531,III.2.a,Industry
+Agriculture,Principal,0.0106592,0.0011622,0,0.12725792,0.0138497,III.1.a,Agriculture
+Agriculture,Significant,0,0,0,0.1404,0.184005,III.1.a,Agriculture
+Industry,Principal,0,0,0.00644457,0,0,III.2.a,Industry
 Industry,Significant,0.142786,0,0,0,5.07764,III.2.a,Industry
 General Environment Protection,Significant,0.220511838,0.21651556,0,0.2195204106,0,IV.1,General Environment Protection
 Other Multisector,Principal,0.248325,0.16661825,0,0.05,0.742441,IV.2,Other Multisector
-Other Multisector,Significant,0.0822737,0.081135,0.35434932,0.053407085,0.5610006,IV.2,Other Multisector
+Other Multisector,Significant,0.0822737,0.081135,0.35434932,0.0448962,0.5610006,IV.2,Other Multisector
 Unallocated / Unspecified,Principal,0,0,0.092763101,0.3397185,0.0971996,IX,Unallocated / Unspecified
 Unallocated / Unspecified,Significant,0.0803351,0.0297693,0.137302209,0.00108988,0.00670145,IX,Unallocated / Unspecified
 Refugees in Donor Countries,Principal,0,0,0,0,0.0391485,Refugees in Donor Countries,Refugees in Donor Countries

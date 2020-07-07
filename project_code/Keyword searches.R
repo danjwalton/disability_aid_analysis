@@ -280,6 +280,10 @@ disqualifying.sectors <- c(
   "Domestic revenue mobilisation"
   #,
   #"Mineral/mining policy and administrative management"
+  ,
+  "Medical education/training"
+  ,
+  "Medical research"
 )
 
 channel.keywords <- c(
@@ -436,6 +440,22 @@ intellectual.disqualifying <- c(
   "intellectual investment"
   ,
   "microbiome"
+  ,
+  "scholarships"
+  ,
+  "biological mechanisms"
+  ,
+  "cancer"
+  ,
+  "assessment tool"
+  ,
+  "fighting maternal and child undernutrition"
+  ,
+  "improve mental health"
+  ,
+  "research enrichment"
+  ,
+  "biomedical"
 )
 
 education.keywords <- c(
