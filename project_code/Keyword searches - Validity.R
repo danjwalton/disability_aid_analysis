@@ -255,12 +255,6 @@ channel.keywords <- c(
   "handicap international"
 )
 
-significant.disqualifying.keywords <- c(
-  "HIV"
-  ,
-  "AIDS"
-)
-
 crs$Gender <- as.character(crs$Gender)
 crs[is.na(Gender)]$Gender <- "Not screened"
 crs[Gender == "0"]$Gender <- "No gender component"
@@ -312,6 +306,14 @@ crs[grepl(paste(channel.keywords, collapse = "|"), tolower(crs$ChannelReportedNa
 # write.csv(crs,"crs.csv")
 
 crs$check <- "No"
+crs <- data.table(crs)
+
+crs[relevance == "None" & Disability == "Principal disability component"]$relevance <- "Principal"
+crs[relevance == "None" & Disability == "Significant disability component"]$relevance <- "Significant"
+
+crs$psychosocial <- "Not psychosocial"
+crs[relevance != "None"][grepl(paste(psychosocial.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$psychosocial <- "psychosocial"
+
 # crs[relevance == "Significant"]$check <- "potential false positive"
 crs[relevance != "None"][PurposeName %in% disqualifying.sectors]$check <- "potential false negative" # If in the disqualifying sectors, it should be checked.
 crs[relevance != "None"][grepl(paste(disqualifying.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$check <- "potential false negative" # If contains the disqualifying keywords, it should be checked.
@@ -321,14 +323,8 @@ crs[relevance != "None"][grepl(paste(disqualifying.keywords, collapse = "|"), to
 crs[relevance != "None"][grepl(paste(significant.disqualifying.keywords, collapse = "|"), (paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$relevance <- "None"
 crs[relevance != "None"][PurposeName %in% disqualifying.sectors]$relevance <- "None"
 
-crs[relevance == "None" & Disability == "Principal disability component"]$relevance <- "Principal"
-crs[relevance == "None" & Disability == "Significant disability component"]$relevance <- "Significant"
-
 crs[relevance == "Principal" & Disability == "No disability component"]$check <- "potential false positive"
 crs[relevance == "Significant" & Disability == "No disability component"]$check <- "potential false positive"
-
-crs$psychosocial <- "Not psychosocial"
-crs[relevance != "None"][grepl(paste(psychosocial.keywords, collapse = "|"), tolower(paste(crs[relevance != "None"]$ProjectTitle, crs[relevance != "None"]$ShortDescription, crs[relevance != "None"]$LongDescription)))]$psychosocial <- "psychosocial"
 
 write.csv(crs,"output/crs.csv")
 # source("https://raw.githubusercontent.com/danjwalton/crs_keyword_searching/master/project_code/split_and_save.R")
